@@ -91,7 +91,7 @@ public class ProductManager {
             }
             txt.append(MessageFormat.format(resources.getString("review"),
                     review.getRating().getStars(),
-                    review.getClass()));
+                    review.getComments()));
             txt.append('\n');
         }
         if (reviews[0] == null) {
