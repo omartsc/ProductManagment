@@ -35,7 +35,7 @@ public class Shop {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         ProductManager pm = new ProductManager(Locale.UK);
         Product p1 = pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(p1);
@@ -46,7 +46,24 @@ public class Shop {
         p1 = pm.reviewProduct(p1, Rating.THREE_STAR, "Just add some lemon");
         p1 = pm.reviewProduct(p1, Rating.FIVE_STAR, "Perfect tea!");
         pm.printProductReport(p1);
-//        Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
+
+        Product p2 = pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
+        p2 = pm.reviewProduct(p2, Rating.THREE_STAR, "Coffee was ok");
+        p2 = pm.reviewProduct(p2, Rating.ONE_STAR, "where is my milk?");
+        p2 = pm.reviewProduct(p2, Rating.FIVE_STAR, "Perfect with ten spoons of sugar");
+        pm.printProductReport(p2);
+
+        Product p3 = pm.createProduct(103, "Cake", BigDecimal.valueOf(3.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));
+        p3 = pm.reviewProduct(p3, Rating.FIVE_STAR, "Very nice cake");
+        p3 = pm.reviewProduct(p3, Rating.FOUR_STAR, "It good, but more chocolate");
+        p3 = pm.reviewProduct(p3, Rating.FIVE_STAR, "This cake is just perfect!");
+        pm.printProductReport(p3);
+        
+        Product p4 = pm.createProduct(105, "Cookie", BigDecimal.valueOf(3.99),Rating.TWO_STAR,LocalDate.now());
+        p4 = pm.reviewProduct(p4, Rating.THREE_STAR, "just another cookie");
+        p4 = pm.reviewProduct(p4, Rating.FOUR_STAR, "keep it on with this cookies");
+        p4 = pm.reviewProduct(p4, Rating.FIVE_STAR, "best cookie ever");
+        pm.printProductReport(p4);
 //        Product p3 = pm.createProduct(103, "Cake", BigDecimal.valueOf(3.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));
 //        Product p4 = pm.createProduct(105, "Cookie", BigDecimal.valueOf(3.99),Rating.TWO_STAR,LocalDate.now());
 //        Product p5 = p3.applyRating(Rating.THREE_STAR);
@@ -56,16 +73,13 @@ public class Shop {
 //        Product p9 = p1.applyRating(Rating.TWO_STAR);
 //        
 //        System.out.println(p6.equals(p7));
-        
+
 //        System.out.println(p3.getBestBefore());
 //        System.out.println(p2.getBestBefore());
-        
 //        if (p3 instanceof Food) {
 //            LocalDate bestBefore = ((Food) p3).getBestBefore();
 //        }
-        
         //p3 = p3.applyRating(Rating.THREE_STAR);
-
 //        System.out.println(p1.getId() + " " + p1.getName() + " " + p1.getPrice() + " " + p1.getDiscount()+" "+p1.getRating().getStars());
 //        System.out.println(p2.getId() + " " + p2.getName() + " " + p2.getPrice() + " " + p2.getDiscount()+" "+p2.getRating().getStars());
 //        System.out.println(p3.getId() + " " + p3.getName() + " " + p3.getPrice() + " " + p3.getDiscount()+" "+p3.getRating().getStars());
@@ -80,8 +94,6 @@ public class Shop {
 //        System.out.println(p7);
 //        System.out.println(p8);
 //        System.out.println(p9);
-        
-
     }
 
 }
