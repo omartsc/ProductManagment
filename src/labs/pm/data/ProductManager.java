@@ -97,4 +97,15 @@ public class ProductManager {
         }
         System.out.println(txt);
     }
+    
+    public Product findProduct(int id) {
+        Product result = null;
+        for (Product product : products.keySet()) {
+            if (product.getId() == id) {
+                result = product;
+                break;
+            }
+        }
+        return result;
+    }
 }
