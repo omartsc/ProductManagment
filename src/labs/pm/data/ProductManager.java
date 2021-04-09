@@ -61,6 +61,10 @@ public class ProductManager {
         products.putIfAbsent(product, new ArrayList<>());
         return product;
     }
+    
+    public Product reviewProduct(int id, Rating rating, String comments) {
+        return reviewProduct(findProduct(id), rating, comments);
+    }
 
     public Product reviewProduct(Product product, Rating rating, String comments) {
         List<Review> reviews = products.get(product);
@@ -96,6 +100,10 @@ public class ProductManager {
             txt.append('\n');
         }
         System.out.println(txt);
+    }
+    
+    public void printProductReport(int id) {
+        printProductReport(findProduct(id));
     }
     
     public Product findProduct(int id) {
