@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +84,7 @@ public class ProductManager {
                 product.getRating().getStars(),
                 dateFormat.format(product.getBestBefore())));
         txt.append('\n');
+        Collections.sort(reviews);
         for (Review review : reviews) {
             txt.append(MessageFormat.format(resources.getString("review"),
                     review.getRating().getStars(),
