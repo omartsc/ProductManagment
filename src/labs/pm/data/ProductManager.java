@@ -46,7 +46,8 @@ public class ProductManager {
                     "fr-FR", new ResourceFormatter(Locale.FRANCE),
                     "ru-RU", new ResourceFormatter(new Locale("ru", "RU")),
                     "zh-CN", new ResourceFormatter(Locale.CHINA),
-                    "es-MX", new ResourceFormatter(new Locale("es", "MX")));
+                    "es-MX", new ResourceFormatter(new Locale("es", "MX")),
+                    "de-DE", new ResourceFormatter(new Locale("de", "DE")));
 
     public ProductManager(Locale locale) {
         this(locale.toLanguageTag());
