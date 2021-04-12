@@ -36,7 +36,7 @@ public class Shop {
      */
     public static void main(String[] args) {
 
-        ProductManager pm = new ProductManager(Locale.UK);
+        ProductManager pm = new ProductManager("en-GB");
         pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);
         pm.reviewProduct(101, Rating.FOUR_STAR, "Nice hot cup of tea!");
@@ -52,12 +52,16 @@ public class Shop {
         pm.reviewProduct(102, Rating.ONE_STAR, "where is my milk?");
         pm.reviewProduct(102, Rating.FIVE_STAR, "Perfect with ten spoons of sugar");
         pm.printProductReport(102);
-
+        
+        pm.changeLocale("de-DE");
+        
         pm.createProduct(103, "Cake", BigDecimal.valueOf(3.99), Rating.FIVE_STAR, LocalDate.now().plusDays(2));
         pm.reviewProduct(103, Rating.FIVE_STAR, "Very nice cake");
         pm.reviewProduct(103, Rating.FOUR_STAR, "It good, but more chocolate");
         pm.reviewProduct(103, Rating.FIVE_STAR, "This cake is just perfect!");
         pm.printProductReport(103);
+        
+        pm.changeLocale("es-MX");
         
         pm.createProduct(105, "Cookie", BigDecimal.valueOf(3.99),Rating.TWO_STAR,LocalDate.now());
         pm.reviewProduct(105, Rating.THREE_STAR, "just another cookie");
