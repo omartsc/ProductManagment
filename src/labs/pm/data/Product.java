@@ -19,7 +19,6 @@ package labs.pm.data;
 import java.math.BigDecimal;
 import static java.math.RoundingMode.HALF_UP;
 import java.time.LocalDate;
-import java.util.Objects;
 import static labs.pm.data.Rating.*;
 
 /**
