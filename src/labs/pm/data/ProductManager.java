@@ -23,7 +23,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -31,8 +30,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
@@ -116,14 +115,13 @@ public class ProductManager {
         System.out.println(txt);
     }
 
-    public void printProducts(Comparator<Product> sorter) {
-        List<Product> productList = new ArrayList<>(products.keySet());
-        productList.sort(sorter);
+    public void printProducts(Predicate<Product> filter, Comparator<Product> sorter) {
         StringBuilder txt = new StringBuilder();
-        for (Product product : productList) {
-            txt.append(formatter.formatProduct(product));
-            txt.append("\n");
-        }
+        products.keySet()
+                .stream()
+                .sorted(sorter)
+                .filter(filter)
+                .forEach(p -> txt.append(formatter.formatProduct(p) + '\n'));
         System.out.println(txt);
     }
 
