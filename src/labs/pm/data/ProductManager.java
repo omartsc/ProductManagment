@@ -31,6 +31,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.stream.Stream;
 
 /**
  *
@@ -129,14 +130,11 @@ public class ProductManager {
     }
 
     public Product findProduct(int id) {
-        Product result = null;
-        for (Product product : products.keySet()) {
-            if (product.getId() == id) {
-                result = product;
-                break;
-            }
-        }
-        return result;
+        return products.keySet()
+                .stream()
+                .filter(p -> p.getId() == id)
+                .findFirst()
+                .orElseGet(() -> null);
     }
 
     private static class ResourceFormatter {
