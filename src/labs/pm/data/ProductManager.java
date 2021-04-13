@@ -31,6 +31,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -103,15 +104,15 @@ public class ProductManager {
         StringBuilder txt = new StringBuilder();
         txt.append(formatter.formatProduct(product));
         txt.append('\n');
-        Collections.sort(reviews);
-        for (Review review : reviews) {
-            txt.append(formatter.formatReview(review));
-            txt.append('\n');
-        }
         if (reviews.isEmpty()) {
-            txt.append(formatter.getText("no.reviews"));
-            txt.append('\n');
+            txt.append(formatter.getText("no.reviews") + '\n');
+        } else {
+            
         }
+        txt.append(reviews.stream()
+                .map(r -> formatter.formatReview(r) + '\n')
+                .collect(Collectors.joining()));
+        
         System.out.println(txt);
     }
 
