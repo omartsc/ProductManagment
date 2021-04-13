@@ -67,13 +67,14 @@ public class Shop {
         pm.reviewProduct(105, Rating.THREE_STAR, "just another cookie");
         pm.reviewProduct(105, Rating.FOUR_STAR, "keep it on with this cookies");
         pm.reviewProduct(105, Rating.FIVE_STAR, "best cookie ever");
-//        pm.printProductReport(105);
+        pm.printProductReport(105);
+        pm.printProducts(p -> p.getPrice().floatValue() < 2, 
+                (p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal());
 
-        Comparator<Product> ratingSorter = (p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
-        Comparator<Product> priceSorter = (p1,p2) -> p2.getPrice().compareTo(p1.getPrice());
-        pm.printProducts(ratingSorter.thenComparing(priceSorter));
-        pm.printProducts(priceSorter.thenComparing(ratingSorter).reversed());
-        
+//        Comparator<Product> ratingSorter = (p1,p2) -> p2.getRating().ordinal() - p1.getRating().ordinal();
+//        Comparator<Product> priceSorter = (p1,p2) -> p2.getPrice().compareTo(p1.getPrice());
+//        pm.printProducts(ratingSorter.thenComparing(priceSorter));
+//        pm.printProducts(priceSorter.thenComparing(ratingSorter).reversed());
         
         
     }
