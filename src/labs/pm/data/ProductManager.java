@@ -88,7 +88,7 @@ public class ProductManager {
         try {
             return reviewProduct(findProduct(id), rating, comments);
         } catch (ProductManagerException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.INFO, ex.getMessage());
         }
         return null;
     }
@@ -140,7 +140,7 @@ public class ProductManager {
         try {
             printProductReport(findProduct(id));
         } catch (ProductManagerException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            logger.log(Level.INFO, ex.getMessage());
         }
     }
 
