@@ -23,6 +23,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +101,7 @@ public class ProductManager {
 
     public void printProductReport(Product product) {
         List<Review> reviews = products.get(product);
+        Collections.sort(reviews);
         StringBuilder txt = new StringBuilder();
         txt.append(formatter.formatProduct(product));
         txt.append('\n');
