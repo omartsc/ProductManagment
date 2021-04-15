@@ -136,7 +136,7 @@ public class ProductManager {
                 .stream()
                 .filter(p -> p.getId() == id)
                 .findFirst()
-                .orElseGet(() -> null);
+                .get();
     }
 
     public Map<String, String> getDiscounts() {
