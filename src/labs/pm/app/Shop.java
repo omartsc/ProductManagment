@@ -40,6 +40,10 @@ public class Shop {
         pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
         pm.printProductReport(101);
         pm.parseReview("101,4,Nice hot cup of tea!");
+        pm.parseReview("101,2,Rather weak taste");
+        pm.parseReview("101,X,Fine tea");
+        pm.parseReview("101,5,Perfect tea");
+        pm.parseReview("101,3,Good tea");
 //        pm.reviewProduct(101, Rating.FOUR_STAR, "Nice hot cup of tea!");
 //        pm.reviewProduct(101, Rating.TWO_STAR, "Rather weak taste");
 //        pm.reviewProduct(101, Rating.FOUR_STAR, "Fine tea");
