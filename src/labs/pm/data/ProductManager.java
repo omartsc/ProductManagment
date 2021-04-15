@@ -145,7 +145,7 @@ public class ProductManager {
             Object[] values = reviewFormat.parse(text);
             reviewProduct(Integer.parseInt((String)values[0]), Rateable.convert(Integer.parseInt((String)values[1])), (String)values[2]);
         } catch (ParseException | NumberFormatException ex) {
-            logger.log(Level.WARNING, "Error parsing review " + text, ex);
+            logger.log(Level.WARNING, "Error parsing review " + text);
         }
     }
 
