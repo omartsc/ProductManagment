@@ -53,6 +53,8 @@ public class ProductManager {
                     "zh-CN", new ResourceFormatter(Locale.CHINA),
                     "es-MX", new ResourceFormatter(new Locale("es", "MX")),
                     "de-DE", new ResourceFormatter(new Locale("de", "DE")));
+    
+    private static final Logger logger = Logger.getLogger(ProductManager.class.getName());
 
     public ProductManager(Locale locale) {
         this(locale.toLanguageTag());
@@ -86,7 +88,7 @@ public class ProductManager {
         try {
             return reviewProduct(findProduct(id), rating, comments);
         } catch (ProductManagerException ex) {
-            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -138,7 +140,7 @@ public class ProductManager {
         try {
             printProductReport(findProduct(id));
         } catch (ProductManagerException ex) {
-            Logger.getLogger(ProductManager.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.SEVERE, null, ex);
         }
     }
 
