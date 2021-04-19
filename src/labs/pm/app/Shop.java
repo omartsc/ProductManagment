@@ -38,14 +38,12 @@ public class Shop {
 
         ProductManager pm = new ProductManager("en-GB");
 //        pm.createProduct(101, "Tea", BigDecimal.valueOf(1.99), Rating.NOT_RATED);
-        pm.parseProduct("D,101,Tea,1.99,0,2019-09-19");
-//        pm.parseProduct("D,101,Tea,1.99,0");
-        pm.printProductReport(101);
-        pm.parseReview("101,4,Nice hot cup of tea!");
-        pm.parseReview("101,2,Rather weak taste");
-        pm.parseReview("101,4,Fine tea");
-        pm.parseReview("101,5,Perfect tea");
-        pm.parseReview("101,3,Good tea");
+//        pm.parseProduct("D,101,Tea,1.99,0,2019-09-19");
+//        pm.parseReview("101,4,Nice hot cup of tea!");
+//        pm.parseReview("101,2,Rather weak taste");
+//        pm.parseReview("101,4,Fine tea");
+//        pm.parseReview("101,5,Perfect tea");
+//        pm.parseReview("101,3,Good tea");
 //        pm.reviewProduct(101, Rating.FOUR_STAR, "Nice hot cup of tea!");
 //        pm.reviewProduct(101, Rating.TWO_STAR, "Rather weak taste");
 //        pm.reviewProduct(101, Rating.FOUR_STAR, "Fine tea");
@@ -54,7 +52,7 @@ public class Shop {
 //        pm.reviewProduct(101, Rating.FIVE_STAR, "Perfect tea!");
         pm.printProductReport(101);
         
-        pm.parseProduct("D,103,Cake,3.99,0,2019-09-19");
+//        pm.parseProduct("D,103,Cake,3.99,0,2019-09-19");
         pm.printProductReport(103);
 //
 //        pm.createProduct(102, "Coffee", BigDecimal.valueOf(1.99), Rating.FOUR_STAR);
