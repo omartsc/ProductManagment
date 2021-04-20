@@ -31,9 +31,9 @@ public class Shop {
      */
     public static void main(String[] args) {
 
-        ProductManager pm = new ProductManager("en-GB");
-        pm.printProductReport(101);
-        pm.printProductReport(103);        
+        ProductManager pm = ProductManager.getInstance();
+        pm.printProductReport(101,"en-GB");
+        pm.printProductReport(103,"es-MX");        
 
     }
 
