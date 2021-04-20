@@ -61,7 +61,7 @@ public class ProductManager {
     private Path reportsFolder = Path.of(config.getString("reports.folder"));
     private Path dataFolder = Path.of(config.getString("data.folder"));
     private Path tempFolder = Path.of(config.getString("temp.folder"));
-    private ResourceFormatter formatter;
+//    private ResourceFormatter formatter;
     private static Map<String, ResourceFormatter> formatters
             = Map.of("en-GB", new ResourceFormatter(Locale.UK),
                     "en-US", new ResourceFormatter(Locale.US),
@@ -72,19 +72,22 @@ public class ProductManager {
                     "de-DE", new ResourceFormatter(new Locale("de", "DE")));
 
     private static final Logger logger = Logger.getLogger(ProductManager.class.getName());
-
-    public ProductManager(Locale locale) {
-        this(locale.toLanguageTag());
+    private static final ProductManager pm = new ProductManager();
+//    public ProductManager(Locale locale) {
+//        this(locale.toLanguageTag());
+//    }
+    public static ProductManager getInstance() {
+        return pm;
     }
 
-    public ProductManager(String languageTag) {
-        changeLocale(languageTag);
+    private ProductManager() {
+//        changeLocale(languageTag);
         loadAllData();
     }
 
-    public void changeLocale(String languageTag) {
-        formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
-    }
+//    public void changeLocale(String languageTag) {
+//        formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
+//    }
 
     public static Set<String> getSupportedLocales() {
         return formatters.keySet();
@@ -126,7 +129,8 @@ public class ProductManager {
         return product;
     }
 
-    public void printProductReport(Product product) throws IOException {
+    public void printProductReport(Product product, String languageTag) throws IOException {
+        ResourceFormatter formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
         List<Review> reviews = products.get(product);
         Collections.sort(reviews);
         Path productFile = reportsFolder.resolve(MessageFormat.format(config.getString("report.file"), product.getId()));
@@ -143,7 +147,8 @@ public class ProductManager {
         }
     }
 
-    public void printProducts(Predicate<Product> filter, Comparator<Product> sorter) {
+    public void printProducts(Predicate<Product> filter, Comparator<Product> sorter, String languageTag) {
+        ResourceFormatter formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
         StringBuilder txt = new StringBuilder();
         products.keySet()
                 .stream()
@@ -159,8 +164,8 @@ public class ProductManager {
             Path tempFile = Files.list(tempFolder)
                     .filter(path -> path.getFileName().toString().endsWith("tmp"))
                     .findFirst().orElseThrow();
-            try (ObjectInputStream in = new ObjectInputStream(Files.newInputStream(tempFile, StandardOpenOption.DELETE_ON_CLOSE))) {
-                products = (HashMap)in.readObject();
+            try ( ObjectInputStream in = new ObjectInputStream(Files.newInputStream(tempFile, StandardOpenOption.DELETE_ON_CLOSE))) {
+                products = (HashMap) in.readObject();
             }
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "Error restoring data " + ex.getMessage(), ex);
@@ -254,9 +259,10 @@ public class ProductManager {
         return product;
     }
 
-    public void printProductReport(int id) {
+    public void printProductReport(int id, String languageTag) {
+        ResourceFormatter formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
         try {
-            printProductReport(findProduct(id));
+            printProductReport(findProduct(id), languageTag);
         } catch (ProductManagerException ex) {
             logger.log(Level.INFO, ex.getMessage());
         } catch (IOException ex) {
@@ -272,7 +278,8 @@ public class ProductManager {
                 .orElseThrow(() -> new ProductManagerException("Product with id " + id + " not found"));
     }
 
-    public Map<String, String> getDiscounts() {
+    public Map<String, String> getDiscounts(String languageTag) {
+        ResourceFormatter formatter = formatters.getOrDefault(languageTag, formatters.get("en-GB"));
         return products.keySet()
                 .stream()
                 .collect(
